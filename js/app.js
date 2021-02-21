@@ -6,6 +6,9 @@ const leftImage = document.getElementById('left-image');
 const middleImage = document.getElementById('middle-image');
 const rightImage = document.getElementById('right-image');
 const imagesSection = document.getElementById('img-section');
+const buttonContainer = document.getElementById('result-button');
+const listContainer = document.getElementById('list');
+let round = 0;
 
 
 function Item(name, extension) {
@@ -21,23 +24,36 @@ Item.all = [];
 for (let i = 0; i < names.length; i++) {
   new Item(names[i], extension[i]);
 }
-
+console.table(Item.all)
 
 function render() {
-  const leftIndex = randomNumber(0, Item.all.length - 1);
+  let leftIndex = 0;
+  let middleIndex = 0;
+  let rightIndex = 0;
+  while (leftIndex === middleIndex || middleIndex === rightIndex || leftIndex === rightIndex) {
+    leftIndex = randomNumber(0, Item.all.length - 1);
+    middleIndex = randomNumber(0, Item.all.length - 1);
+    rightIndex = randomNumber(0, Item.all.length - 1);
+  }
+
+  // const leftIndex = randomNumber(0, Item.all.length - 1);
   leftImage.src = Item.all[leftIndex].path;
   leftImage.title = Item.all[leftIndex].name;
   leftImage.alt = Item.all[leftIndex].name;
+  Item.all[leftIndex].views++;
 
-  const middleIndex = randomNumber(0, Item.all.length - 1);
+  // const middleIndex = randomNumber(0, Item.all.length - 1);
   middleImage.src = Item.all[middleIndex].path;
   middleImage.title = Item.all[middleIndex].name;
   middleImage.alt = Item.all[middleIndex].name;
-
-  const rightIndex = randomNumber(0, Item.all.length - 1);
+  Item.all[middleIndex].views++;
+  // const rightIndex = randomNumber(0, Item.all.length - 1);
   rightImage.src = Item.all[rightIndex].path;
   rightImage.title = Item.all[rightIndex].name;
   rightImage.alt = Item.all[rightIndex].name;
+  Item.all[rightIndex].views++;
+
+
 
 }
 imagesSection.addEventListener('click', handleClick);
@@ -49,9 +65,26 @@ function handleClick(event) {
       }
     }
     render();
-
+    round++;
+    if (round===5){
+      imagesSection.removeEventListener('click', handleClick);      
+      const buttonEl=document.createElement('button');
+      buttonContainer.appendChild(buttonEl);
+      buttonEl.textContent = 'Show Results';
+    }
   }
 }
+buttonContainer.addEventListener('click',clickButton);
+function clickButton(event){
+  buttonContainer.removeEventListener('click', clickButton);
+  for (let i = 0; i < Item.all.length; i++) {
+    const listItemEl = document.createElement('li');
+    listContainer.appendChild(listItemEl);
+    listItemEl.textContent= Item.all[i].name + ': ' + Item.all[i].views + 'views and ' + Item.all[i].votes + ' votes.';
+    
+  }
+}
+
 
 
 
