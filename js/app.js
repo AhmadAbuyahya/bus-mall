@@ -66,7 +66,7 @@ function handleClick(event) {
     }
     render();
     round++;
-    if (round===5){
+    if (round===25){
       imagesSection.removeEventListener('click', handleClick);      
       const buttonEl=document.createElement('button');
       buttonContainer.appendChild(buttonEl);
@@ -80,7 +80,7 @@ function clickButton(event){
   for (let i = 0; i < Item.all.length; i++) {
     const listItemEl = document.createElement('li');
     listContainer.appendChild(listItemEl);
-    listItemEl.textContent= Item.all[i].name + ': ' + Item.all[i].views + 'views and ' + Item.all[i].votes + ' votes.';
+    listItemEl.textContent= Item.all[i].name + ': ' + Item.all[i].views + ' views and ' + Item.all[i].votes + ' votes.';
     
   }
 }

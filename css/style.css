@@ -1,13 +1,57 @@
-#img-section{
-    width: 1230px;
-    height: 500px;
-    border: 3px black solid;
+* {
+    box-sizing: border-box;
+    
 }
-img {
-    width: 300px;
-    height: 300px;
-    border: 10px solid #C89737;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-  }
+body{
+    background-image: url(../images/bg.jpg);
+    background-size: cover ;
+}
+h1{
+    font-size: xx-large;
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+    margin-bottom: 15px;
+}
+header{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+p{
+    font-size: x-large;
+    text-align: center;
+    font-family: 'RocknRoll One', sans-serif;
+}
+#result-section{
+  float: left;
+
+}
+#img-section{
+    text-align: center;
+    
+}
+img{
+   width: 250px;
+   height: 250px;
+   border: 10px #3d3939 solid;
+   border-radius: 20px;
+   
+}
+#result-button{
+text-align: center;
+}
+button{
+    width: 200px;
+    height: 50px;
+    background-color: rgb(228, 228, 228);
+    font-size: x-large;
+    color: rgb(24, 24, 29);
+    border: 3px grey solid;
+    font-family: 'RocknRoll One', sans-serif;
+}
+ul{
+    list-style: circle ;
+   font-size: 30px;
+   font-family: 'Roboto Condensed', sans-serif;
+   margin-left: 50px;
+    
+}
