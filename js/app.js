@@ -40,8 +40,8 @@ function render() {
 
   let middleIndex=randomNumber(0, Item.all.length - 1);
   while (middleIndex === leftIndex || middleIndex === previousLeftIndex || middleIndex === previousMiddleIndex || middleIndex === previousRightIndex) {
-    middleIndex = randomNumber(0, Item.all.length - 1); }
-    middleImage.src = Item.all[middleIndex].path;
+  middleIndex = randomNumber(0, Item.all.length - 1); }
+  middleImage.src = Item.all[middleIndex].path;
   middleImage.title = Item.all[middleIndex].name;
   middleImage.alt = Item.all[middleIndex].name;
   Item.all[middleIndex].views++;
@@ -100,6 +100,7 @@ function handleClick(event) {
       const buttonEl=document.createElement('button');
       buttonContainer.appendChild(buttonEl);
       buttonEl.textContent = 'Show Results';
+      saveData();
     }
   }
 }
@@ -153,7 +154,21 @@ function createChart() {
     options: {},
   });
 }
+getData();
 
+
+// local storage
+
+function saveData(){
+
+  localStorage.setItem('voteCounts',JSON.stringify(Item.all));
+}
+function getData(){
+  if (localStorage.getItem('voteCounts')){
+    Item.all=JSON.parse(localStorage.getItem('voteCounts'));
+    render();
+  }
+}
 
 
 
